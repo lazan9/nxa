@@ -1,3 +1,2 @@
 openai>=1.30
 langdetect>=1.0.9
-pyobjc-framework-Cocoa
