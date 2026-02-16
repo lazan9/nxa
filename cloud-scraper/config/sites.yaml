@@ -1,0 +1,157 @@
+sites:
+  arukereso:
+    country: HU
+    language: hu
+    base_url: https://www.arukereso.hu
+    top_products_path: /toplista/
+    category_pattern: "/{category}-c{id}/"
+    pagination_param: "start"
+    pagination_step: 25
+    selectors:
+      product_list: "div.product-box"
+      product_name: "div.name a"
+      product_price: ".price"
+      product_link: "div.name a[href]"
+      product_image: "img.product-image"
+      product_id: "[data-product]"
+      product_count: "div.category-navbar span.product-num span"
+      top_products: "div.opciok-lista .termek-box, div.product-box"
+    currency: HUF
+
+  heureka_cz:
+    country: CZ
+    language: cs
+    base_url: https://www.heureka.cz
+    top_products_path: /
+    category_pattern: "https://{category}.heureka.cz/"
+    pagination_param: "f"
+    pagination_step: 1
+    selectors:
+      product_list: "[data-testid='product-card'], .c-product__wrap"
+      product_name: "[data-testid='product-card-title'], .c-product__title a"
+      product_price: "[data-testid='product-card-price'], .c-product__price .o-rating__value"
+      product_link: "[data-testid='product-card-title'] a, .c-product__title a[href]"
+      product_image: "[data-testid='product-card-image'] img, .c-product__img img"
+      product_id: "[data-product-id], [data-id]"
+      top_products: ".c-product__wrap, [data-testid='product-card']"
+    currency: CZK
+
+  heureka_sk:
+    country: SK
+    language: sk
+    base_url: https://www.heureka.sk
+    top_products_path: /
+    category_pattern: "https://{category}.heureka.sk/"
+    pagination_param: "f"
+    pagination_step: 1
+    selectors:
+      product_list: "[data-testid='product-card'], .c-product__wrap"
+      product_name: "[data-testid='product-card-title'], .c-product__title a"
+      product_price: "[data-testid='product-card-price'], .c-product__price .o-rating__value"
+      product_link: "[data-testid='product-card-title'] a, .c-product__title a[href]"
+      product_image: "[data-testid='product-card-image'] img, .c-product__img img"
+      product_id: "[data-product-id], [data-id]"
+      top_products: ".c-product__wrap, [data-testid='product-card']"
+    currency: EUR
+
+  compari:
+    country: RO
+    language: ro
+    base_url: https://www.compari.ro
+    top_products_path: /toplista/
+    category_pattern: "/{category}-c{id}/"
+    pagination_param: "start"
+    pagination_step: 25
+    selectors:
+      product_list: "div.product-box"
+      product_name: "div.name a"
+      product_price: ".price"
+      product_link: "div.name a[href]"
+      product_image: "img.product-image"
+      product_id: "[data-product]"
+      top_products: "div.product-box"
+    currency: RON
+
+  ceneje:
+    country: SI
+    language: sl
+    base_url: https://www.ceneje.si
+    top_products_path: /toplista/
+    category_pattern: "/{category}-c{id}/"
+    pagination_param: "start"
+    pagination_step: 25
+    selectors:
+      product_list: "div.product-box"
+      product_name: "div.name a"
+      product_price: ".price"
+      product_link: "div.name a[href]"
+      product_image: "img.product-image"
+      product_id: "[data-product]"
+      top_products: "div.product-box"
+    currency: EUR
+
+  geizhals_at:
+    country: AT
+    language: de
+    base_url: https://geizhals.at
+    top_products_path: "/?cat=top100"
+    category_pattern: "/?cat={id}"
+    pagination_param: "pg"
+    pagination_step: 1
+    selectors:
+      product_list: ".productlist__product, .listview__item"
+      product_name: ".productlist__name, .listview__name a"
+      product_price: ".productlist__price, .listview__price"
+      product_link: ".productlist__name a, .listview__name a[href]"
+      product_image: ".productlist__image img, .listview__image img"
+      product_id: "[data-product-id], [data-id]"
+      top_products: ".productlist__product, .listview__item"
+    currency: EUR
+
+  geizhals_de:
+    country: DE
+    language: de
+    base_url: https://geizhals.de
+    top_products_path: "/?cat=top100"
+    category_pattern: "/?cat={id}"
+    pagination_param: "pg"
+    pagination_step: 1
+    selectors:
+      product_list: ".productlist__product, .listview__item"
+      product_name: ".productlist__name, .listview__name a"
+      product_price: ".productlist__price, .listview__price"
+      product_link: ".productlist__name a, .listview__name a[href]"
+      product_image: ".productlist__image img, .listview__image img"
+      product_id: "[data-product-id], [data-id]"
+      top_products: ".productlist__product, .listview__item"
+    currency: EUR
+
+  ceneo:
+    country: PL
+    language: pl
+    base_url: https://www.ceneo.pl
+    top_products_path: /
+    category_pattern: "/{category}"
+    pagination_param: "p"
+    pagination_step: 1
+    selectors:
+      product_list: ".cat-prod-row, .category-list-body .cat-prod-row__content"
+      product_name: ".cat-prod-row__name a, .go-to-product"
+      product_price: ".cat-prod-row__price .price-format, .price-format.nowrap"
+      product_link: ".cat-prod-row__name a[href], .go-to-product[href]"
+      product_image: ".cat-prod-row__foto img, .lazy-image"
+      product_id: "[data-productid], [data-pid]"
+      top_products: ".cat-prod-row, .js_category-list-body .cat-prod-row__content"
+    currency: PLN
+
+# Default scraper settings
+defaults:
+  max_concurrent: 5
+  request_delay_ms: 1500
+  max_retries: 3
+  timeout_seconds: 30
+  use_playwright: false
+  user_agent_rotation: true
+  proxy: null
+  output_dir: ./data
+  output_format: json  # json, csv, xlsx

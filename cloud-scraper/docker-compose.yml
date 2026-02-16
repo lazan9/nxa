@@ -1,0 +1,36 @@
+services:
+  scraper:
+    build: .
+    container_name: eu-price-scraper
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    environment:
+      - SCRAPER_OUTPUT_DIR=/app/data
+      - SCRAPER_CONFIG=/app/config/sites.yaml
+      - SCRAPER_LOG_LEVEL=INFO
+      # Uncomment to use a proxy
+      # - SCRAPER_PROXY=http://proxy:port
+      # Uncomment to enable Playwright for JS-heavy sites
+      # - SCRAPER_USE_PLAYWRIGHT=true
+    # Default: scrape top products from all countries
+    command: ["top", "--countries", "all", "--format", "xlsx"]
+
+  # Scheduled scraping with cron (optional)
+  scraper-cron:
+    build: .
+    container_name: eu-price-scraper-cron
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    environment:
+      - SCRAPER_OUTPUT_DIR=/app/data
+      - SCRAPER_CONFIG=/app/config/sites.yaml
+    entrypoint: >
+      sh -c "
+        echo '0 6 * * * cd /app && python -m scraper.cli top --countries all --format xlsx >> /var/log/scraper.log 2>&1' > /etc/crontab &&
+        crontab /etc/crontab &&
+        cron -f
+      "
+    profiles:
+      - cron
