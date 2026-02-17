@@ -24,6 +24,7 @@ class ArukeresoScraper(BaseScraper):
 
     # Known top category URLs on arukereso.hu for discovering hot products
     TOP_CATEGORIES = [
+        "/csonakmotor-c3586/",
         "/mobiltelefon-c3277/",
         "/notebook-c3100/",
         "/tablet-c3340/",

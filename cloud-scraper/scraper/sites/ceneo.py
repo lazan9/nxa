@@ -24,6 +24,7 @@ class CeneoScraper(BaseScraper):
 
     # Top category paths on ceneo.pl
     TOP_CATEGORIES = [
+        "/Silniki_zaburtowe",
         "/Smartfony",
         "/Laptopy",
         "/Tablety",

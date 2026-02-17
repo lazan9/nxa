@@ -24,6 +24,7 @@ class GeizhalsBaseScraper(BaseScraper):
 
     # Additional category codes for deeper scraping
     CATEGORY_CODES = {
+        "outboard_motors": "aussenborder",
         "smartphones": "smartphones",
         "notebooks": "nb",
         "tablets": "tablet",

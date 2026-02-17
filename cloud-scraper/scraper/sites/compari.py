@@ -23,6 +23,7 @@ class CompariScraper(BaseScraper):
     CURRENCY = "RON"
 
     TOP_CATEGORIES = [
+        "/motoare-barca-c3586/",
         "/telefoane-mobile-c3277/",
         "/laptop-notebook-c3100/",
         "/tablete-c3340/",

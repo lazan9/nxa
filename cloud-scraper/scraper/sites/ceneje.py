@@ -22,6 +22,7 @@ class CenejeScraper(BaseScraper):
     CURRENCY = "EUR"
 
     TOP_CATEGORIES = [
+        "/izvenkrmni-motorji-c3586/",
         "/mobilni-telefoni-c3277/",
         "/prenosniki-c3100/",
         "/tablicni-racunalniki-c3340/",

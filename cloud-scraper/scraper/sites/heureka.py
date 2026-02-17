@@ -21,6 +21,7 @@ class HeurekaScraper(BaseScraper):
 
     # Popular categories for discovering top products
     CATEGORIES = [
+        "lodni-motory",
         "mobilni-telefony",
         "notebooky",
         "tablety",
@@ -262,6 +263,7 @@ class HeurekaSkScraper(HeurekaScraper):
     CURRENCY = "EUR"
 
     CATEGORIES = [
+        "lodne-motory",
         "mobilne-telefony",
         "notebooky",
         "tablety",
