@@ -27,9 +27,10 @@ class BaseScraper(ABC):
     BASE_URL: str = ""
     CURRENCY: str = ""
 
-    def __init__(self, config: dict, use_playwright: bool = False):
+    def __init__(self, config: dict, use_playwright: bool = False, max_products: int = 0):
         self.config = config
         self.use_playwright = use_playwright
+        self.max_products = max_products  # 0 = unlimited
         self.ua = UserAgent()
         self.delay = config.get("defaults", {}).get("request_delay_ms", 1500) / 1000
         self.max_retries = config.get("defaults", {}).get("max_retries", 3)

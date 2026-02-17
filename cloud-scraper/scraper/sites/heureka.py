@@ -39,7 +39,10 @@ class HeurekaScraper(BaseScraper):
 
     def _category_url(self, category: str) -> str:
         """Build full category URL using Heureka's subdomain pattern."""
-        return f"https://{category}.{self.base_url.split('//')[1]}/"
+        # Heureka uses subdomain-based categories: {category}.heureka.{tld}
+        # Strip www. from base URL for subdomain construction
+        domain = self.base_url.split("//")[1].replace("www.", "")
+        return f"https://{category}.{domain}/"
 
     async def scrape_top_products(self) -> ScrapeResult:
         """Scrape top/popular products from main categories."""
@@ -63,16 +66,21 @@ class HeurekaScraper(BaseScraper):
 
             # Scrape top categories (sorted by popularity/top)
             for cat in self.CATEGORIES:
+                if self.max_products and len(result.products) >= self.max_products:
+                    break
                 try:
                     url = self._category_url(cat)
                     html = await self.fetch_page(url, client)
                     soup = self._parse(html)
                     products = self._extract_products(soup, cat)
-                    for i, p in enumerate(products[:10]):
+                    take = 10
+                    if self.max_products:
+                        take = min(take, self.max_products - len(result.products))
+                    for i, p in enumerate(products[:take]):
                         p.rank = i + 1
-                    result.products.extend(products[:10])
+                    result.products.extend(products[:take])
                     logger.info(
-                        f"[{self.SITE_KEY}] {cat}: {len(products[:10])} products"
+                        f"[{self.SITE_KEY}] {cat}: {len(products[:take])} products"
                     )
                     await asyncio.sleep(self.delay)
                 except Exception as e:

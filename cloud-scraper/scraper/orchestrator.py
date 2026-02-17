@@ -37,11 +37,13 @@ class Orchestrator:
         use_playwright: bool = False,
         output_dir: str = "./data",
         output_format: str = "json",
+        max_products: int = 0,
     ):
         self.config = config
         self.use_playwright = use_playwright
         self.output_dir = output_dir
         self.output_format = output_format
+        self.max_products = max_products
 
         # Resolve countries
         if countries and "all" in [c.lower() for c in countries]:
@@ -62,7 +64,9 @@ class Orchestrator:
             if not scraper_cls:
                 logger.warning(f"No scraper for: {site_key}")
                 continue
-            self.scrapers[country] = scraper_cls(config, use_playwright=use_playwright)
+            self.scrapers[country] = scraper_cls(
+                config, use_playwright=use_playwright, max_products=max_products
+            )
 
     async def scrape_top_products(self) -> list[ScrapeResult]:
         """Scrape top/hot products from all configured countries concurrently."""

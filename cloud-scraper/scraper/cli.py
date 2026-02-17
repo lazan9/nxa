@@ -89,8 +89,21 @@ def cli(ctx, config, log_level):
     default=os.environ.get("SCRAPER_USE_PLAYWRIGHT", "").lower() == "true",
     help="Use Playwright for JS-rendered pages",
 )
+@click.option(
+    "--limit",
+    "-l",
+    default=0,
+    type=int,
+    help="Max products per country (0 = unlimited)",
+)
+@click.option(
+    "--demo",
+    is_flag=True,
+    default=False,
+    help="Use demo data (no internet needed, for testing the pipeline)",
+)
 @click.pass_context
-def top(ctx, countries, fmt, output, playwright):
+def top(ctx, countries, fmt, output, playwright, limit, demo):
     """Scrape top/hot selling products from all configured sites."""
     config = ctx.obj["config"]
     country_list = (
@@ -98,7 +111,7 @@ def top(ctx, countries, fmt, output, playwright):
     )
 
     # Show what we're doing
-    table = Table(title="Scraping Top Products")
+    table = Table(title="Scraping Top Products" + (" [DEMO]" if demo else ""))
     table.add_column("Country", style="cyan")
     table.add_column("Site", style="green")
     for c in country_list:
@@ -106,16 +119,28 @@ def top(ctx, countries, fmt, output, playwright):
         table.add_row(c.upper(), COUNTRY_NAMES.get(c, "Unknown"))
     console.print(table)
     console.print()
+    if limit:
+        console.print(f"[yellow]Limiting to {limit} products per country[/yellow]\n")
 
-    orch = Orchestrator(
-        config=config,
-        countries=country_list,
-        use_playwright=playwright,
-        output_dir=output,
-        output_format=fmt,
-    )
+    if demo:
+        from .demo import generate_demo_results
+        from .exporter import export_results as do_export
 
-    results = asyncio.run(orch.scrape_top_products())
+        console.print("[yellow]Running in DEMO mode - using sample data[/yellow]\n")
+        results = generate_demo_results(country_list, max_products=limit or 10)
+        filepath = do_export(results, output, fmt)
+        console.print(f"[green]Demo data exported to: {filepath}[/green]\n")
+    else:
+        orch = Orchestrator(
+            config=config,
+            countries=country_list,
+            use_playwright=playwright,
+            output_dir=output,
+            output_format=fmt,
+            max_products=limit,
+        )
+
+        results = asyncio.run(orch.scrape_top_products())
 
     # Summary
     console.print()

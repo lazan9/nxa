@@ -62,17 +62,22 @@ class CeneoScraper(BaseScraper):
 
             # Category pages sorted by popularity
             for cat_path in self.TOP_CATEGORIES:
+                if self.max_products and len(result.products) >= self.max_products:
+                    break
                 try:
                     # ;szukaj-t: sort by popularity on ceneo
                     url = f"{self.base_url}{cat_path};0020-0,,,,d0.htm"
                     html = await self.fetch_page(url, client)
                     soup = self._parse(html)
                     products = self._extract_products(soup, cat_path.strip("/"))
-                    for i, p in enumerate(products[:10]):
+                    take = 10
+                    if self.max_products:
+                        take = min(take, self.max_products - len(result.products))
+                    for i, p in enumerate(products[:take]):
                         p.rank = i + 1
-                    result.products.extend(products[:10])
+                    result.products.extend(products[:take])
                     logger.info(
-                        f"[{self.SITE_KEY}] {cat_path}: {len(products[:10])} products"
+                        f"[{self.SITE_KEY}] {cat_path}: {len(products[:take])} products"
                     )
                     await asyncio.sleep(self.delay)
                 except Exception as e:

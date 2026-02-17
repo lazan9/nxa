@@ -55,6 +55,8 @@ class GeizhalsBaseScraper(BaseScraper):
                 html = await self.fetch_page(url, client)
                 soup = self._parse(html)
                 products = self._extract_top100(soup)
+                if self.max_products:
+                    products = products[:self.max_products]
                 for i, p in enumerate(products):
                     p.rank = i + 1
                 result.products.extend(products)
@@ -67,14 +69,19 @@ class GeizhalsBaseScraper(BaseScraper):
 
             # Category pages for additional top products
             for cat_name, cat_code in self.CATEGORY_CODES.items():
+                if self.max_products and len(result.products) >= self.max_products:
+                    break
                 try:
                     url = f"{self.base_url}/?cat={cat_code}"
                     html = await self.fetch_page(url, client)
                     soup = self._parse(html)
                     products = self._extract_category(soup, cat_name)
-                    result.products.extend(products[:10])
+                    take = 10
+                    if self.max_products:
+                        take = min(take, self.max_products - len(result.products))
+                    result.products.extend(products[:take])
                     logger.info(
-                        f"[{self.SITE_KEY}] {cat_name}: {len(products[:10])} products"
+                        f"[{self.SITE_KEY}] {cat_name}: {len(products[:take])} products"
                     )
                     await asyncio.sleep(self.delay)
                 except Exception as e:
