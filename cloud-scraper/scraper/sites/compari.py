@@ -22,22 +22,23 @@ class CompariScraper(BaseScraper):
     BASE_URL = "https://www.compari.ro"
     CURRENCY = "RON"
 
+    # NXA.hu product categories: marine/boating, water sports, musical instruments
     TOP_CATEGORIES = [
         "/motoare-barca-c3586/",
-        "/telefoane-mobile-c3277/",
-        "/laptop-notebook-c3100/",
-        "/tablete-c3340/",
-        "/televizoare-led-c3498/",
-        "/placi-video-c3142/",
-        "/ssd-c3510/",
-        "/monitoare-c3130/",
-        "/casti-audio-c3389/",
-        "/smartwatch-c3635/",
-        "/console-jocuri-c3378/",
-        "/masini-de-spalat-c3015/",
-        "/espressoare-c3028/",
-        "/aspiratoare-c3019/",
-        "/aparate-foto-c3199/",
+        "/barci-gonflabile-c3587/",
+        "/caiac-canoe-c3588/",
+        "/sonar-fishfinder-c3589/",
+        "/gps-navigatie-nautica-c3590/",
+        "/echipament-navigatie-c3591/",
+        "/accesorii-barca-c3592/",
+        "/sup-paddleboard-c3593/",
+        "/schi-nautic-wakeboard-c3594/",
+        "/jucarii-acvatice-tractabile-c3595/",
+        "/chitara-acustica-c3400/",
+        "/chitara-electrica-c3401/",
+        "/chitara-bass-c3402/",
+        "/tobe-percutie-c3403/",
+        "/garmin-c3596/",
     ]
 
     async def scrape_top_products(self) -> ScrapeResult:

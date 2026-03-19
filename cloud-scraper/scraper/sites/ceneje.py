@@ -21,22 +21,23 @@ class CenejeScraper(BaseScraper):
     BASE_URL = "https://www.ceneje.si"
     CURRENCY = "EUR"
 
+    # NXA.hu product categories: marine/boating, water sports, musical instruments
     TOP_CATEGORIES = [
         "/izvenkrmni-motorji-c3586/",
-        "/mobilni-telefoni-c3277/",
-        "/prenosniki-c3100/",
-        "/tablicni-racunalniki-c3340/",
-        "/televizorji-c3498/",
-        "/graficne-kartice-c3142/",
-        "/ssd-diski-c3510/",
-        "/monitorji-c3130/",
-        "/slusalke-c3389/",
-        "/pametne-ure-c3635/",
-        "/igralne-konzole-c3378/",
-        "/pralni-stroji-c3015/",
-        "/kavni-aparati-c3028/",
-        "/sesalniki-c3019/",
-        "/fotoaparati-c3199/",
+        "/napihljivi-colni-c3587/",
+        "/kajaki-kanoji-c3588/",
+        "/sonarji-globinomeri-c3589/",
+        "/gps-navigacija-plovila-c3590/",
+        "/jadralna-oprema-c3591/",
+        "/oprema-za-colne-c3592/",
+        "/sup-deske-c3593/",
+        "/vodne-smucke-wakeboard-c3594/",
+        "/vlecne-vodne-igrace-c3595/",
+        "/akusticne-kitare-c3400/",
+        "/elektricne-kitare-c3401/",
+        "/bas-kitare-c3402/",
+        "/bobni-tolkala-c3403/",
+        "/garmin-c3596/",
     ]
 
     async def scrape_top_products(self) -> ScrapeResult:

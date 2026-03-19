@@ -22,23 +22,23 @@ class ArukeresoScraper(BaseScraper):
     BASE_URL = "https://www.arukereso.hu"
     CURRENCY = "HUF"
 
-    # Known top category URLs on arukereso.hu for discovering hot products
+    # NXA.hu product categories: marine/boating, water sports, musical instruments
     TOP_CATEGORIES = [
         "/csonakmotor-c3586/",
-        "/mobiltelefon-c3277/",
-        "/notebook-c3100/",
-        "/tablet-c3340/",
-        "/led-tv-c3498/",
-        "/videokartya-c3142/",
-        "/ssd-c3498/",
-        "/monitor-c3130/",
-        "/fejhallgato-c3389/",
-        "/okosora-c3635/",
-        "/jatekkonzol-c3378/",
-        "/haztartasi-nagygep-c3015/",
-        "/kavefozoek-c3028/",
-        "/porszivo-c3019/",
-        "/fenykepezo-c3199/",
+        "/gumicsónak-c3587/",
+        "/kajak-kenu-c3588/",
+        "/halradar-c3589/",
+        "/hajos-gps-navigacio-c3590/",
+        "/vitorlas-felszereles-c3591/",
+        "/csonak-tartozek-c3592/",
+        "/sup-allva-evezos-deszka-c3593/",
+        "/vizisi-wakeboard-c3594/",
+        "/vontatható-vizijáték-c3595/",
+        "/akusztikus-gitar-c3400/",
+        "/elektromos-gitar-c3401/",
+        "/basszusgitar-c3402/",
+        "/dob-utohangszer-c3403/",
+        "/garmin-c3596/",
     ]
 
     async def scrape_top_products(self) -> ScrapeResult:

@@ -19,23 +19,23 @@ logger = logging.getLogger(__name__)
 class HeurekaScraper(BaseScraper):
     """Base scraper for Heureka sites (CZ and SK share the same structure)."""
 
-    # Popular categories for discovering top products
+    # NXA.hu product categories: marine/boating, water sports, musical instruments
     CATEGORIES = [
         "lodni-motory",
-        "mobilni-telefony",
-        "notebooky",
-        "tablety",
-        "televize",
-        "graficke-karty",
-        "ssd-disky",
-        "monitory",
-        "sluchatka",
-        "chytre-hodinky",
-        "herni-konzole",
-        "pracky",
-        "kavovary",
-        "vysavace",
-        "fotoaparaty",
+        "nafukovaci-cluny",
+        "kajaky-kanoe",
+        "sonary-echoluty",
+        "lodní-gps-navigace",
+        "plachetni-vybaveni",
+        "prislusenstvi-k-lodim",
+        "paddleboardy",
+        "vodni-lyze-wakeboardy",
+        "tahane-vodní-atrakce",
+        "akusticke-kytary",
+        "elektricke-kytary",
+        "basove-kytary",
+        "bici-soupravy",
+        "garmin",
     ]
 
     def _category_url(self, category: str) -> str:
@@ -262,20 +262,21 @@ class HeurekaSkScraper(HeurekaScraper):
     BASE_URL = "https://www.heureka.sk"
     CURRENCY = "EUR"
 
+    # NXA.hu product categories: marine/boating, water sports, musical instruments
     CATEGORIES = [
         "lodne-motory",
-        "mobilne-telefony",
-        "notebooky",
-        "tablety",
-        "televizory",
-        "graficke-karty",
-        "ssd-disky",
-        "monitory",
-        "sluchadla",
-        "smart-hodinky",
-        "herne-konzoly",
-        "pracky",
-        "kavovary",
-        "vysavace",
-        "fotoaparaty",
+        "nafukovacie-clny",
+        "kajaky-kanoe",
+        "sonary-echoloty",
+        "lodna-gps-navigacia",
+        "plachetne-vybavenie",
+        "prislusenstvo-k-lodiam",
+        "paddleboardy",
+        "vodne-lyze-wakeboardy",
+        "tahane-vodne-atrakcie",
+        "akusticke-gitary",
+        "elektricke-gitary",
+        "basove-gitary",
+        "bicie-supravy",
+        "garmin",
     ]
