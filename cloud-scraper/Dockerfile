@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
+    cron \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
@@ -37,5 +38,8 @@ RUN mkdir -p /app/data
 
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
+
+# API server port
+EXPOSE 8000
 
 ENTRYPOINT ["python", "-m", "scraper.cli"]
