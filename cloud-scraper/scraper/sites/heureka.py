@@ -19,23 +19,24 @@ logger = logging.getLogger(__name__)
 class HeurekaScraper(BaseScraper):
     """Base scraper for Heureka sites (CZ and SK share the same structure)."""
 
-    # NXA.hu product categories: marine/boating, water sports, musical instruments
+    # NXA.hu product categories: boat motors, boats, water sports, musical instruments
     CATEGORIES = [
         "lodni-motory",
+        "elektricke-lodni-motory",
         "nafukovaci-cluny",
-        "kajaky-kanoe",
+        "rib-cluny",
         "sonary-echoluty",
-        "lodní-gps-navigace",
         "plachetni-vybaveni",
         "prislusenstvi-k-lodim",
+        "rybarsky-sortiment",
         "paddleboardy",
         "vodni-lyze-wakeboardy",
         "tahane-vodní-atrakce",
+        "prepravniky-na-cluny",
         "akusticke-kytary",
         "elektricke-kytary",
         "basove-kytary",
         "bici-soupravy",
-        "garmin",
     ]
 
     def _category_url(self, category: str) -> str:
@@ -262,21 +263,22 @@ class HeurekaSkScraper(HeurekaScraper):
     BASE_URL = "https://www.heureka.sk"
     CURRENCY = "EUR"
 
-    # NXA.hu product categories: marine/boating, water sports, musical instruments
+    # NXA.hu product categories: boat motors, boats, water sports, musical instruments
     CATEGORIES = [
         "lodne-motory",
+        "elektricke-lodne-motory",
         "nafukovacie-clny",
-        "kajaky-kanoe",
+        "rib-clny",
         "sonary-echoloty",
-        "lodna-gps-navigacia",
         "plachetne-vybavenie",
         "prislusenstvo-k-lodiam",
+        "rybarsky-sortiment",
         "paddleboardy",
         "vodne-lyze-wakeboardy",
         "tahane-vodne-atrakcie",
+        "prepravniky-na-clny",
         "akusticke-gitary",
         "elektricke-gitary",
         "basove-gitary",
         "bicie-supravy",
-        "garmin",
     ]

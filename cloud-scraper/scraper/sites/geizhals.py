@@ -22,23 +22,24 @@ class GeizhalsBaseScraper(BaseScraper):
     Geizhals has a dedicated /?cat=top100 page listing the most popular products.
     """
 
-    # NXA.hu product categories: marine/boating, water sports, musical instruments
+    # NXA.hu product categories: boat motors, boats, water sports, musical instruments
     CATEGORY_CODES = {
         "outboard_motors": "aussenborder",
+        "electric_outboards": "elektro_aussenborder",
         "inflatable_boats": "schlauchboote",
-        "kayaks_canoes": "kajaks",
+        "rib_boats": "rib_boote",
         "fish_finders": "echolote",
-        "marine_gps": "gps_marine",
         "sailing_equipment": "segelzubehoer",
         "boat_accessories": "bootszubehoer",
+        "fishing_gear": "angelzubehoer",
         "sup_boards": "sup",
         "water_skis_wakeboards": "wasserski",
         "towable_tubes": "wasserattraktionen",
+        "boat_trailers": "bootstrailer",
         "acoustic_guitars": "akustikgitarren",
         "electric_guitars": "e_gitarren",
         "bass_guitars": "bassgitarren",
         "drums_percussion": "schlagzeug",
-        "garmin": "garmin",
     }
 
     async def scrape_top_products(self) -> ScrapeResult:

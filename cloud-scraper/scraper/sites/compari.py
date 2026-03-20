@@ -22,23 +22,24 @@ class CompariScraper(BaseScraper):
     BASE_URL = "https://www.compari.ro"
     CURRENCY = "RON"
 
-    # NXA.hu product categories: marine/boating, water sports, musical instruments
+    # NXA.hu product categories: boat motors, boats, water sports, musical instruments
     TOP_CATEGORIES = [
         "/motoare-barca-c3586/",
+        "/motoare-electrice-barca-c3597/",
         "/barci-gonflabile-c3587/",
-        "/caiac-canoe-c3588/",
+        "/barci-rib-c3598/",
         "/sonar-fishfinder-c3589/",
-        "/gps-navigatie-nautica-c3590/",
         "/echipament-navigatie-c3591/",
         "/accesorii-barca-c3592/",
+        "/echipament-pescuit-c3599/",
         "/sup-paddleboard-c3593/",
         "/schi-nautic-wakeboard-c3594/",
         "/jucarii-acvatice-tractabile-c3595/",
+        "/remorca-barca-c3600/",
         "/chitara-acustica-c3400/",
         "/chitara-electrica-c3401/",
         "/chitara-bass-c3402/",
         "/tobe-percutie-c3403/",
-        "/garmin-c3596/",
     ]
 
     async def scrape_top_products(self) -> ScrapeResult:

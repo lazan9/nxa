@@ -22,23 +22,24 @@ class CeneoScraper(BaseScraper):
     BASE_URL = "https://www.ceneo.pl"
     CURRENCY = "PLN"
 
-    # NXA.hu product categories: marine/boating, water sports, musical instruments
+    # NXA.hu product categories: boat motors, boats, water sports, musical instruments
     TOP_CATEGORIES = [
         "/Silniki_zaburtowe",
+        "/Silniki_elektryczne_do_lodzi",
         "/Pontony_i_lodzie_dmuchane",
-        "/Kajaki_i_canoe",
+        "/Lodzie_RIB",
         "/Echosondy_i_sonar",
-        "/GPS_nawigacja_morska",
         "/Osprzet_zeglarski",
         "/Akcesoria_do_lodzi",
+        "/Sprzet_wedkarski",
         "/Deski_SUP",
         "/Narty_wodne_i_wakeboardy",
         "/Holowane_atrakcje_wodne",
+        "/Przyczepy_do_lodzi",
         "/Gitary_akustyczne",
         "/Gitary_elektryczne",
         "/Gitary_basowe",
         "/Perkusja",
-        "/Garmin",
     ]
 
     async def scrape_top_products(self) -> ScrapeResult:
